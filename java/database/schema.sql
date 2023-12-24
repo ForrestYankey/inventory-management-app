@@ -10,4 +10,8 @@ CREATE TABLE users (
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
 
+CREATE TABLE hello (
+	string varchar(100)
+);
+
 COMMIT TRANSACTION;
