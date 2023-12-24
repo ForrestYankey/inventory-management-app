@@ -17,17 +17,18 @@ public class JdbcHelloWorldDao implements HelloWorldDao{
     @Override
     public HelloWorld fetchHelloWorld() {
         HelloWorld helloWorld = new HelloWorld();
+        String string;
         String sql = "SELECT string FROM hello";
 
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
             if (results.next()) {
-                helloWorld.setHelloWorld(results.getString("string"));
+                string = (results.getString("string"));
+                helloWorld.setHelloWorld(string);
             }
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         }
-
         return helloWorld;
     }
 }
