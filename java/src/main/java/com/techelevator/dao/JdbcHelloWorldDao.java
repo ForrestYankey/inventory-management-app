@@ -5,7 +5,9 @@ import com.techelevator.model.HelloWorld;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
+@Component
 public class JdbcHelloWorldDao implements HelloWorldDao{
 
     private final JdbcTemplate jdbcTemplate;
