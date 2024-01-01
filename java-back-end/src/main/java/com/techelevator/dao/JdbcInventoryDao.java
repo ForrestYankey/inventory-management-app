@@ -33,7 +33,11 @@ public class JdbcInventoryDao implements InventoryDao{
 
     private InventoryItem mapRowToInventoryItem(SqlRowSet rowSet) {
         InventoryItem item = null;
-        item.set
+        item.setID(rowSet.getInt("item_id"));
         item.setName(rowSet.getString("name"));
+        item.setDescription(rowSet.getString("description"));
+        item.setQuantity(rowSet.getInt("quantity"));
+        item.setPrice(rowSet.getDouble("price"));
+        return item;
     }
 }
