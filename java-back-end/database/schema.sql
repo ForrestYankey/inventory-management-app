@@ -1,5 +1,6 @@
 BEGIN TRANSACTION;
 
+DROP TABLE IF EXISTS inventory;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS hello;
 
@@ -13,6 +14,14 @@ CREATE TABLE users (
 
 CREATE TABLE hello (
 	string varchar(100)
+);
+
+CREATE TABLE inventory (
+	item_id SERIAL,
+	name varchar(100),
+	descripiton varchar(1000),
+	quantity NUMERIC,
+	price DECIMAL
 );
 
 COMMIT TRANSACTION;

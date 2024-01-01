@@ -7,10 +7,10 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - frontend
+      - frontend  # Corrected service name
   frontend:
     build:
-      context: ./react-front-end
+      context: ./react-frontend
       dockerfile: Dockerfile
     ports:
       - "3000:3000"

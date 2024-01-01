@@ -2,7 +2,7 @@
 FROM maven:3.8.4-openjdk-11-slim AS build
 
 # Set the working directory in the container
-WORKDIR /inventory-management-app
+WORKDIR /app
 
 # Copy the project files and download dependencies
 COPY pom.xml .
@@ -15,10 +15,10 @@ RUN mvn clean install -DskipTests
 FROM openjdk:11-jre-slim
 
 # Set the working directory in the container
-WORKDIR /inventory-management-app
+WORKDIR /app
 
 # Copy the built JAR file from the build stage
-COPY --from=build /inventory-management-app/target/java-back-end.jar /inventory-management-app/java-back-end.jar
+COPY --from=build /app/target/java-back-end.jar /inventory-management-app/java-back-end.jar
 
 # Expose the port the app runs on
 EXPOSE 8080
