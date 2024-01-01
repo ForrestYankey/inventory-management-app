@@ -1,12 +1,21 @@
 package com.techelevator.dao;
 
+import com.techelevator.exception.DaoException;
 import com.techelevator.model.InventoryItem;
 import org.springframework.data.relational.core.sql.In;
+import org.springframework.jdbc.CannotGetJdbcConnectionException;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import java.util.List;
 
 public class JdbcInventoryDao implements InventoryDao{
+
+    private final JdbcTemplate jdbcTemplate;
+
+    public JdbcInventoryDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
     @Override
     public InventoryItem addNewInventoryItem() {
         return null;
@@ -17,6 +26,15 @@ public class JdbcInventoryDao implements InventoryDao{
         List<InventoryItem> inventoryItems = null;
 
         String sql = "SELECT item_id, name, description, quantity, price FROM inventory";
+
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+            while (results.next()) {
+                inventoryItems.add(mapRowToInventoryItem(results));
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
 
         return inventoryItems;
     }
