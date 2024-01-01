@@ -6,9 +6,12 @@ import org.springframework.data.relational.core.sql.In;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class JdbcInventoryDao implements InventoryDao{
 
     private final JdbcTemplate jdbcTemplate;
@@ -23,7 +26,7 @@ public class JdbcInventoryDao implements InventoryDao{
 
     @Override
     public List<InventoryItem> fetchInventoryItems() {
-        List<InventoryItem> inventoryItems = null;
+        List<InventoryItem> inventoryItems = new ArrayList<>();
 
         String sql = "SELECT item_id, name, description, quantity, price FROM inventory";
 
@@ -50,7 +53,7 @@ public class JdbcInventoryDao implements InventoryDao{
     }
 
     private InventoryItem mapRowToInventoryItem(SqlRowSet rowSet) {
-        InventoryItem item = null;
+        InventoryItem item = new InventoryItem();
         item.setID(rowSet.getInt("item_id"));
         item.setName(rowSet.getString("name"));
         item.setDescription(rowSet.getString("description"));
