@@ -5,7 +5,7 @@ INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpUL
 
 INSERT INTO hello (string) VALUES ('Hello, World!');
 
-INSERT INTO inventory (name, descripiton, quantity, price)
+INSERT INTO inventory (name, description, quantity, price)
 VALUES
     ('Running Shoes', 'Lightweight running shoes for optimal performance.', 50, 79.99),
     ('Basketball Sneakers', 'High-top basketball sneakers with ankle support.', 30, 109.95),

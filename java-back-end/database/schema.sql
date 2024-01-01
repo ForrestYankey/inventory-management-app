@@ -19,7 +19,7 @@ CREATE TABLE hello (
 CREATE TABLE inventory (
 	item_id SERIAL,
 	name varchar(100),
-	descripiton varchar(1000),
+	description varchar(1000),
 	quantity NUMERIC,
 	price DECIMAL
 );

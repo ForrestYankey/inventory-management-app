@@ -4,6 +4,7 @@ import com.techelevator.dao.InventoryDao;
 import org.springframework.data.relational.core.sql.In;
 
 public class InventoryItem {
+    private int ID;
     private String name;
     private String description;
     private int quantity;
@@ -11,11 +12,20 @@ public class InventoryItem {
 
     public InventoryItem(){}
 
-    public InventoryItem(String name, String description, int quantity, double price) {
+    public InventoryItem(int ID, String name, String description, int quantity, double price) {
+        this.ID = ID;
         this.name = name;
         this.description = description;
         this.quantity = quantity;
         this.price = price;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getName() {
