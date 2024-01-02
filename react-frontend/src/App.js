@@ -1,10 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
-import HelloWord from './HelloWorld.js'
+import HelloWord from './HelloWorld.js';
+import Inventory from './Inventory.js';
 
 function App() {
   return (
-    <HelloWord />
+    // <HelloWord />
+    <Inventory />
   );
 }
 

@@ -11,9 +11,9 @@ root.render(
   </React.StrictMode>
 );
 
-const port = process.env.PORT || 8080;
+// const port = process.env.PORT || 8080;
 
-root.listen(port, () => console.log(`app listening on http://localhost:${port}`) );
+// root.listen(port, () => console.log(`app listening on http://localhost:${port}`) );
 
 
 // If you want to start measuring performance in your app, pass a function
