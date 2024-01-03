@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface InventoryDao {
 
-    InventoryItem addNewInventoryItem();
+    InventoryItem addNewInventoryItem(InventoryItem newItem);
     List<InventoryItem> fetchInventoryItems();
     InventoryItem updateInventoryItem();
     boolean deleteInventoryItem();

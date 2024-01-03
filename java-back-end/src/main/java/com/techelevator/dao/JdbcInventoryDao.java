@@ -20,8 +20,16 @@ public class JdbcInventoryDao implements InventoryDao{
         this.jdbcTemplate = jdbcTemplate;
     }
     @Override
-    public InventoryItem addNewInventoryItem() {
-        return null;
+    public InventoryItem addNewInventoryItem(InventoryItem newItem) {
+        String sql = "INSERT INTO inventory (name, description, quantity, price) VALUES (?, ?, ?, ?) RETURNING item_id";
+
+        try {
+            int id = jdbcTemplate.queryForObject(sql, int.class, newItem.getName(), newItem.getDescription(), newItem.getQuantity(), newItem.getPrice());
+            newItem.setID(id);
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return newItem;
     }
 
     @Override
