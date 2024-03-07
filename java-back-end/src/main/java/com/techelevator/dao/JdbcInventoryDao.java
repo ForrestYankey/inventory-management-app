@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.techelevator.mappers.InventoryMappers.mapRowToInventoryItem;
+
 @Component
 public class JdbcInventoryDao implements InventoryDao{
 
@@ -19,8 +21,10 @@ public class JdbcInventoryDao implements InventoryDao{
     public JdbcInventoryDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
+
     @Override
     public InventoryItem addNewInventoryItem(InventoryItem newItem) {
+        InventoryItem returnedItem = new InventoryItem();
         String sql = "INSERT INTO inventory (name, description, quantity, price) VALUES (?, ?, ?, ?) RETURNING item_id";
 
         try {
@@ -60,13 +64,5 @@ public class JdbcInventoryDao implements InventoryDao{
         return false;
     }
 
-    private InventoryItem mapRowToInventoryItem(SqlRowSet rowSet) {
-        InventoryItem item = new InventoryItem();
-        item.setID(rowSet.getInt("item_id"));
-        item.setName(rowSet.getString("name"));
-        item.setDescription(rowSet.getString("description"));
-        item.setQuantity(rowSet.getInt("quantity"));
-        item.setPrice(rowSet.getDouble("price"));
-        return item;
-    }
+
 }
