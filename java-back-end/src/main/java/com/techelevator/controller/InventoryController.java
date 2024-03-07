@@ -12,10 +12,14 @@ import java.util.List;
 @CrossOrigin
 public class InventoryController {
 
-    @Autowired
     private InventoryDao inventoryDao;
 
-    @RequestMapping(path = "/inventory", method = RequestMethod.GET)
+    @Autowired
+    public InventoryController(InventoryDao inventoryDao) {
+        this.inventoryDao = inventoryDao;
+    }
+
+    @GetMapping("/inventory")
     public List<InventoryItem> fetchInventoryItems() {
         List<InventoryItem> inventoryItems = new ArrayList<>();
         inventoryItems = inventoryDao.fetchInventoryItems();
