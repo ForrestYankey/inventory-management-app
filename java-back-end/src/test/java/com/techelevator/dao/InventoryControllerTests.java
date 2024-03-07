@@ -1,11 +1,13 @@
 package com.techelevator.dao;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.techelevator.controller.InventoryController;
 import com.techelevator.model.InventoryItem;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -14,6 +16,7 @@ import java.util.List;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 public class InventoryControllerTests {
@@ -56,4 +59,28 @@ public class InventoryControllerTests {
                 .andExpect(jsonPath("$[1].quantity").value(20))
                 .andExpect(jsonPath("$[1].price").value(29.99));
     }
+
+    //TODO fix
+//    @Test
+//    public void testAddNewInventoryItem() throws Exception {
+//        // Arrange
+//        InventoryItem newItem = new InventoryItem(1, "Test Item", "Test Description", 5, 9.99);
+//        InventoryItem addedItem = new InventoryItem(1, "Test Item", "Test Description", 5, 9.99);
+//
+//        // Mocking the behavior of InventoryDao to return the added inventory item
+//        when(inventoryDao.addNewInventoryItem(newItem)).thenReturn(addedItem);
+//
+//        // Act & Assert
+//        mockMvc.perform(post("/inventory/add")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content(new ObjectMapper().writeValueAsString(newItem)))
+//                // Assert that the response status is 200 OK
+//                .andExpect(status().isOk())
+//                // Assert that the response body matches the added inventory item
+//                .andExpect(jsonPath("$.ID").value(1))
+//                .andExpect(jsonPath("$.name").value("Test Item"))
+//                .andExpect(jsonPath("$.description").value("Test Description"))
+//                .andExpect(jsonPath("$.quantity").value(5))
+//                .andExpect(jsonPath("$.price").value(9.99));
+//    }
 }

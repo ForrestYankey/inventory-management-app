@@ -1,5 +1,6 @@
 package com.techelevator.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.techelevator.dao.InventoryDao;
 import org.springframework.data.relational.core.sql.In;
 
